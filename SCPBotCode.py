@@ -65,32 +65,28 @@ async def on_message(message):
             }
             await client.send_message(message.channel, 'That Star Wars movie is called *' + titles[int(msg)] + '*')
 #LoadingBarBotCode
-    elif trigMessage.startswith(trigPref + 'load'):
+    elif trigMessage.startswith(trigPref + '!load'):
         progress = 0
         loading = await client.send_message(message.channel, str(progress) + '% ----------------------------- 100%')
-        i=0
-        while i <= 100:
-            progress = progress-1
-            await client.edit_message(loading, '`10%  ||------------------ 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`20%  ||||---------------- 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`30%  ||||||-------------- 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`40%  ||||||||------------ 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`50%  ||||||||||---------- 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`60%  ||||||||||||-------- 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`70%  ||||||||||||||------ 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`80%  ||||||||||||||||---- 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`90%  ||||||||||||||||||-- 100%`')
-            await asyncio.sleep(0.5)
-            await client.edit_message(loading, '`100% |||||||||||||||||||| 100%`')
-            i = i+1
+        await client.edit_message(loading, '`10%  ||------------------ 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`20%  ||||---------------- 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`30%  ||||||-------------- 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`40%  ||||||||------------ 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`50%  ||||||||||---------- 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`60%  ||||||||||||-------- 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`70%  ||||||||||||||------ 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`80%  ||||||||||||||||---- 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`90%  ||||||||||||||||||-- 100%`')
+        await asyncio.sleep(0.5)
+        await client.edit_message(loading, '`100% |||||||||||||||||||| 100%`')
 #PizzaOrderBotCode
     elif trigMessage.startswith(trigPref + '`sudo order pizza`'):
         await client.send_message(message.channel,':pizza:')
