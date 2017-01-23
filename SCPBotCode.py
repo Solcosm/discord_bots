@@ -2,7 +2,7 @@ import discord
 import asyncio
 import requests
 
-token = "TOKEN"
+token = "TKN"
 
 #leave for testing so we can run multiple at the same time -- adds a prefix to the trigger
 trigPref = ""
