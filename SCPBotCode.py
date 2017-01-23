@@ -48,7 +48,7 @@ async def on_message(message):
 #AyyLmaoBotCode
     elif trigMessage.startswith(trigPref + 'ayy'):
         await client.send_message(message.channel, 'lmao')
-#StarWarsTitle
+#StarWarsTitleBotCode
     elif trigMessage.startswith(trigPref + 'sw'):
         msg = message.content.split(' ', 1)[1]
         if len(msg) == 1 and msg.isdigit() and int(msg) >= 0 and int(msg) <= 9:
@@ -64,7 +64,7 @@ async def on_message(message):
                 9: '[TBA]'
             }
             await client.send_message(message.channel, 'That Star Wars movie is called *' + titles[int(msg)] + '*')
-#LoadingBar
+#LoadingBarBotCode
     elif trigMessage.startswith(trigPref + 'load'):
         progress = 0
         loading = await client.send_message(message.channel, str(progress) + '% ----------------------------- 100%')
@@ -91,7 +91,7 @@ async def on_message(message):
             await asyncio.sleep(0.5)
             await client.edit_message(loading, '`100% |||||||||||||||||||| 100%`')
             i = i+1
-#LoadingBar
+#PizzaOrderBotCode
     elif trigMessage.startswith(trigPref + '`sudo order pizza`'):
         await client.send_message(message.channel,':pizza:')
 
