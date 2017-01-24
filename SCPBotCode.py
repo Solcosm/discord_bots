@@ -94,10 +94,5 @@ async def on_message(message):
 #RandomNumberGenCode
     elif trigMessage.startswith(trigPref + '!rand'):
         value = random.randrange(1, 100)
-        text = 'Your number is: '
-        loop = 1
-        while loop == 1:
-            await client.send_message(message.channel,text)
-            await client.send_message(message.channel,value)
-            break
+        await client.send_message(message.channel,'Your number is: ' + str(value))
 client.run(token)
