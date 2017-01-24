@@ -5,7 +5,7 @@ import random
 import praw
 import datetime
 
-token = "KEY"
+token = "MjcyOTkyMjI1NzE2MzM4Njg4.C2fBew.EvdYa4lYWforBVGEebCnBuXETm4"
 
 reddit = praw.Reddit(client_id='gZYW4noix22UQA',
                      client_secret="-HsFfCrXNm59gONekaqD-qugkP4",
