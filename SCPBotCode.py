@@ -1,6 +1,7 @@
 import discord
 import asyncio
 import requests
+import random
 
 token = "TKN"
 
@@ -90,5 +91,13 @@ async def on_message(message):
 #PizzaOrderBotCode
     elif trigMessage.startswith(trigPref + '`sudo order pizza`'):
         await client.send_message(message.channel,':pizza:')
-
+#RandomNumberGenCode
+    elif trigMessage.startswith(trigPref + '!rand'):
+        value = random.randrange(1, 100)
+        text = 'Your number is: '
+        loop = 1
+        while loop == 1:
+            await client.send_message(message.channel,text)
+            await client.send_message(message.channel,value)
+            break
 client.run(token)
