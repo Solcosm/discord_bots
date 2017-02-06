@@ -142,4 +142,4 @@ async def on_message(message):
         passlen = int(passsplit[1])
         randtextstr = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(passlen))
         await client.send_message(message.channel, 'Your password is: ' + randtextstr)
-client.run('MjcyOTU0MzQ0NDQ4NTg5ODI0.C2hlhQ.DS_XIM89jG42Q9C6Y_vI9hPcIxw')
+client.run('INSERT_DISCORD_SERVER_TOKEN_HERE')
