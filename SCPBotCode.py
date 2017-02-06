@@ -120,8 +120,9 @@ async def on_message(message):
         await client.send_message(message.channel, 'https://www.reddit.com/u/' + user)
         r_user = reddit.redditor(user)
         print(r_user.submissions.new())
-        await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '** | Comment Karma: **' + str(r_user.comment_karma) + '**')
-
+        await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '**')
+        await client.send_message(message.channel, 'Comment Karma: **' + str(r_user.comment_karma) + '**')
+        
     elif trigMessage.startswith(trigPref + '!u '):
         user = message.content.split(' ', 1)[1]
         await client.send_message(message.channel, 'https://www.reddit.com/u/' + user)
@@ -133,5 +134,10 @@ async def on_message(message):
             posts_message = posts_message + '\n**(' + str(submission.score) + ')** ' + str(time) + ': *' + submission.title + '*\n' + submission.shortlink
         await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '** | Comment Karma: **' + str(r_user.comment_karma) + '** | Recent Posts:')
         await client.send_message(message.channel, posts_message)
-
+#RandomIntegerSpam
+    elif trigMessage.startswith(trigPref + 'spam'):
+        loop = true
+        while loop == true:
+            y = random.randrange(1,100)
+            await client.send_message(message.channel, y)
 client.run(token)
