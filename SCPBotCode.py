@@ -131,13 +131,15 @@ async def on_message(message):
         await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '**')
         await client.send_message(message.channel, 'Comment Karma: **' + str(r_user.comment_karma) + '**')
 #RandomIntegerSpam
-    elif trigMessage.startswith(trigPref + 'numberspam'):
+    elif trigMessage.startswith(trigPref + '!numberspam'):
         loop = 1
         while loop == 1:
             y = random.randrange(1,100)
             await client.send_message(message.channel, y)
-#TextGen
-    elif trigMessage.startswith(trigPref + 'g'):
-        randtextstr = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10))
-        await client.send_message(message.channel, '' + randtextstr)
+#PasswordGen
+    elif trigMessage.startswith(trigPref + '!p'):
+        passsplit = message.content.split(' ', 1)
+        passlen = int(passsplit[1])
+        randtextstr = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(passlen))
+        await client.send_message(message.channel, 'Your password is: ' + randtextstr)
 client.run('MjcyOTU0MzQ0NDQ4NTg5ODI0.C2hlhQ.DS_XIM89jG42Q9C6Y_vI9hPcIxw')
