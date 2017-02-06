@@ -4,6 +4,7 @@ import requests
 import random
 import praw
 import datetime
+import string
 
 token = "KEY"
 
@@ -54,6 +55,9 @@ async def on_message(message):
 # SarcasmBotCode
     elif trigMessage.startswith(trigPref + 'haha'):
         await client.send_message(message.channel, '^ sarcasm tbh')
+# TestCode
+    elif trigMessage.startswith(trigPref + 'Alfonso'):
+        await client.send_message(message.channel, 'sucks')
 # AyyLmaoBotCode
     elif trigMessage.startswith(trigPref + 'ayy'):
         await client.send_message(message.channel, 'lmao')
@@ -75,27 +79,31 @@ async def on_message(message):
             await client.send_message(message.channel, 'That Star Wars movie is called *' + titles[int(msg)] + '*.')
 # LoadingBarBotCode
     elif trigMessage.startswith(trigPref + '!load'):
+        x = random.randrange(0,10)
         loading = await client.send_message(message.channel, '`0%   -------------------`')
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`10%  ||------------------`')
-        await asyncio.sleep(1)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`20%  ||||----------------`')
-        await asyncio.sleep(1.5)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`30%  ||||||--------------`')
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`40%  ||||||||------------`')
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`50%  ||||||||||----------`')
-        await asyncio.sleep(2)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`60%  ||||||||||||--------`')
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`70%  ||||||||||||||------`')
-        await asyncio.sleep(1)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`80%  ||||||||||||||||----`')
-        await asyncio.sleep(1)
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`90%  ||||||||||||||||||--`')
-        await asyncio.sleep(0.5)
+        await asyncio.sleep(x)
+        await client.edit_message(loading, '`95%  |||||||||||||||||||-`')
+        await asyncio.sleep(x)
         await client.edit_message(loading, '`100% ||||||||||||||||||||`')
+        await client.send_message(message.channel, 'Loading Complete!')
 # PizzaOrderBotCode
     elif trigMessage.startswith(trigPref + '`sudo order pizza`'):
         await client.send_message(message.channel, ':pizza:')
@@ -122,22 +130,14 @@ async def on_message(message):
         print(r_user.submissions.new())
         await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '**')
         await client.send_message(message.channel, 'Comment Karma: **' + str(r_user.comment_karma) + '**')
-        
-    elif trigMessage.startswith(trigPref + '!u '):
-        user = message.content.split(' ', 1)[1]
-        await client.send_message(message.channel, 'https://www.reddit.com/u/' + user)
-        r_user = reddit.redditor(user)
-        r_u_posts = r_user.submissions.new(limit=5)
-        posts_message = ''
-        for submission in r_u_posts:
-            time = datetime.datetime.fromtimestamp(submission.created)
-            posts_message = posts_message + '\n**(' + str(submission.score) + ')** ' + str(time) + ': *' + submission.title + '*\n' + submission.shortlink
-        await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '** | Comment Karma: **' + str(r_user.comment_karma) + '** | Recent Posts:')
-        await client.send_message(message.channel, posts_message)
 #RandomIntegerSpam
-    elif trigMessage.startswith(trigPref + 'spam'):
-        loop = true
-        while loop == true:
+    elif trigMessage.startswith(trigPref + 'numberspam'):
+        loop = 1
+        while loop == 1:
             y = random.randrange(1,100)
             await client.send_message(message.channel, y)
-client.run(token)
+#TextGen
+    elif trigMessage.startswith(trigPref + 'g'):
+        randtextstr = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(10))
+        await client.send_message(message.channel, '' + randtextstr)
+client.run('MjcyOTU0MzQ0NDQ4NTg5ODI0.C2hlhQ.DS_XIM89jG42Q9C6Y_vI9hPcIxw')
