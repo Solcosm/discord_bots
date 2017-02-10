@@ -17,7 +17,7 @@ client = discord.Client()
 async def on_ready():
     print('Logged in')
 
-# [SCPBotCode]
+# [SCPBotCodeUmbrella]
 
 @client.event
 async def on_message(message):
