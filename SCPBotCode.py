@@ -142,4 +142,18 @@ async def on_message(message):
         passlen = int(passsplit[1])
         randtextstr = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(passlen))
         await client.send_message(message.channel, 'Your password is: ' + randtextstr)
+#LennyCode
+    elif trigMessage.startswith(trigPref + 'lenny'):
+        await client.send_message(message.channel, '( ͡° ͜ʖ ͡°)')
+#DiceRoll
+    elif trigMessage.startswith(trigPref + '!roll'):
+            dieRoll = random.randrange(1,20)
+            await client.send_message(message.channel, dieRoll) 
+#WikipediaSearch
+    elif trigMessage.startswith(trigPref + 'wiki'):
+        wikiSplit = message.content.split(' ')
+        wikiSplit.pop(0)
+        wikiLink = 'https://en.wikipedia.org/wiki/' 
+        wiki = "_".join(wikiSplit)
+        await client.send_message(message.channel, wikiLink + wiki)
 client.run('INSERT_DISCORD_SERVER_TOKEN_HERE')
