@@ -6,7 +6,7 @@ import praw
 import datetime
 import string
 
-token = "MjcyOTkyMjI1NzE2MzM4Njg4.C2fBew.EvdYa4lYWforBVGEebCnBuXETm4"
+token = "token"
 
 reddit = praw.Reddit(client_id='gZYW4noix22UQA',
                      client_secret="-HsFfCrXNm59gONekaqD-qugkP4",
