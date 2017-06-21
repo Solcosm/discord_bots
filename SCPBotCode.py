@@ -53,11 +53,8 @@ async def on_message(message):
         else:
             await client.send_message(message.channel, 'SCP must be a 3 or 4 digit number. Example: `SCP-1175`')
 # SarcasmBotCode
-    elif trigMessage.startswith(trigPref + 'haha'):
-        await client.send_message(message.channel, '^ sarcasm tbh')
-# TestCode
-    elif trigMessage.startswith(trigPref + 'Alfonso'):
-        await client.send_message(message.channel, 'sucks')
+    #elif trigMessage.startswith(trigPref + 'haha'):
+       #await client.send_message(message.channel, '^ sarcasm tbh')
 # AyyLmaoBotCode
     elif trigMessage.startswith(trigPref + 'ayy'):
         await client.send_message(message.channel, 'lmao')
@@ -156,4 +153,41 @@ async def on_message(message):
         wikiLink = 'https://en.wikipedia.org/wiki/' 
         wiki = "_".join(wikiSplit)
         await client.send_message(message.channel, wikiLink + wiki)
+#Magic8Ball
+    elif trigMessage.startswith(trigPref + 'magic8ball'):
+        await client.send_message(message.channel, 'To use the Magic 8 Ball, type !8ball and your question...')
+    elif trigMessage.startswith(trigPref + '!8ball'):
+        ballSplit = message.content.split(' ')
+        answers = ['It is certain', 
+                   'It is decidedly so', 
+                   'Without a doubt',
+                   'Yes, definitely',
+                   'You may rely on it',
+                   'As I see it, yes',
+                   'Most likely',
+                   'Outlook is good',
+                   'Yes',
+                   'Signs point towards yes',
+                   'My vision is hazy, please try again',
+                   "I don't want to answer that...",
+                   'It would be better to tell you that information at a later date...',
+                   'I have no idea',
+                   'Concentrate harder, and ask again',
+                   "Don't count on it",
+                   'I see "no"',
+                   '*(counter-terrorist voice)* Negative',
+                   'Outlook is bleak at best',
+                   'I am very doubtful',
+                   "Ha, don't kid yourself"]
+        chosenans = random.choice(answers)
+        await client.send_message(message.channel, chosenans)
+#RandomIntegerSpam
+    elif trigMessage.startswith(trigPref + '!test'):
+        loop = 1
+        while loop == 1:
+            await client.send_message(message.channel, 'PLAYERUNKNOWNS BATTLEGROUNDS')
+#Error
+    elif trigMessage.startswith(trigPref + 'help'):
+        await client.send_message(message.channel, 'ERROR CANNOT PROCESS FUNCTION REPORT TO AN ADMINISTRATOR IMMEDIATELY')
+
 client.run('INSERT_DISCORD_SERVER_TOKEN_HERE')
