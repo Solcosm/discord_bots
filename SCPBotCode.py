@@ -6,7 +6,7 @@ import praw
 import datetime
 import string
 
-token = "KEY"
+token = "MjcyOTkyMjI1NzE2MzM4Njg4.C2fBew.EvdYa4lYWforBVGEebCnBuXETm4"
 
 reddit = praw.Reddit(client_id='gZYW4noix22UQA',
                      client_secret="-HsFfCrXNm59gONekaqD-qugkP4",
@@ -29,9 +29,10 @@ async def on_ready():
 async def on_message(message):
     trigMessage = message.content.lower()
 # ScpBotCode
-    if trigMessage.startswith(trigPref + 'scp-'):
+    SCPCodes = [t for t in trigMessage.split() if t.startswith('scp-') or t.startswith('SCP-') or t.startswith('Scp-')]
+    if SCPCodes:
         await client.send_typing(message.channel)
-        msg = message.content.split('-', 1)[1]
+        msg = SCPCodes[0].split('-', 1)[1]
 
         if len(msg) <= 4 and len(msg) >= 3 and msg.isdigit():
             tmp_msg = await client.send_message(message.channel, '**Link:** http://www.scp-wiki.net/scp-' + msg + ' *Checking for existence...*')
@@ -52,9 +53,6 @@ async def on_message(message):
 
         else:
             await client.send_message(message.channel, 'SCP must be a 3 or 4 digit number. Example: `SCP-1175`')
-# SarcasmBotCode
-    #elif trigMessage.startswith(trigPref + 'haha'):
-       #await client.send_message(message.channel, '^ sarcasm tbh')
 # AyyLmaoBotCode
     elif trigMessage.startswith(trigPref + 'ayy'):
         await client.send_message(message.channel, 'lmao')
@@ -76,7 +74,7 @@ async def on_message(message):
             await client.send_message(message.channel, 'That Star Wars movie is called *' + titles[int(msg)] + '*.')
 # LoadingBarBotCode
     elif trigMessage.startswith(trigPref + '!load'):
-        x = random.randrange(0,10)
+        x = random.randrange(0, 10)
         loading = await client.send_message(message.channel, '`0%   -------------------`')
         await asyncio.sleep(x)
         await client.edit_message(loading, '`10%  ||------------------`')
@@ -127,39 +125,38 @@ async def on_message(message):
         print(r_user.submissions.new())
         await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '**')
         await client.send_message(message.channel, 'Comment Karma: **' + str(r_user.comment_karma) + '**')
-#RandomIntegerSpam
+# RandomIntegerSpam
     elif trigMessage.startswith(trigPref + '!numberspam'):
         loop = 1
         while loop == 1:
-            y = random.randrange(1,100)
+            y = random.randrange(1, 100)
             await client.send_message(message.channel, y)
-#PasswordGen
+# PasswordGen
     elif trigMessage.startswith(trigPref + '!p'):
         passsplit = message.content.split(' ', 1)
         passlen = int(passsplit[1])
         randtextstr = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(passlen))
         await client.send_message(message.channel, 'Your password is: ' + randtextstr)
-#LennyCode
+# LennyCode
     elif trigMessage.startswith(trigPref + 'lenny'):
         await client.send_message(message.channel, '( ͡° ͜ʖ ͡°)')
-#DiceRoll
+# DiceRoll
     elif trigMessage.startswith(trigPref + '!roll'):
-            dieRoll = random.randrange(1,20)
-            await client.send_message(message.channel, dieRoll) 
-#WikipediaSearch
+            dieRoll = random.randrange(1, 20)
+            await client.send_message(message.channel, dieRoll)
+# WikipediaSearch
     elif trigMessage.startswith(trigPref + 'wiki'):
         wikiSplit = message.content.split(' ')
         wikiSplit.pop(0)
-        wikiLink = 'https://en.wikipedia.org/wiki/' 
+        wikiLink = 'https://en.wikipedia.org/wiki/'
         wiki = "_".join(wikiSplit)
         await client.send_message(message.channel, wikiLink + wiki)
-#Magic8Ball
+# Magic8Ball
     elif trigMessage.startswith(trigPref + 'magic8ball'):
         await client.send_message(message.channel, 'To use the Magic 8 Ball, type !8ball and your question...')
     elif trigMessage.startswith(trigPref + '!8ball'):
-        ballSplit = message.content.split(' ')
-        answers = ['It is certain', 
-                   'It is decidedly so', 
+        answers = ['It is certain',
+                   'It is decidedly so',
                    'Without a doubt',
                    'Yes, definitely',
                    'You may rely on it',
@@ -181,13 +178,15 @@ async def on_message(message):
                    "Ha, don't kid yourself"]
         chosenans = random.choice(answers)
         await client.send_message(message.channel, chosenans)
-#RandomIntegerSpam
+# RandomIntegerSpam
     elif trigMessage.startswith(trigPref + '!test'):
         loop = 1
         while loop == 1:
             await client.send_message(message.channel, 'PLAYERUNKNOWNS BATTLEGROUNDS')
-#Error
+# Error
     elif trigMessage.startswith(trigPref + 'help'):
         await client.send_message(message.channel, 'ERROR CANNOT PROCESS FUNCTION REPORT TO AN ADMINISTRATOR IMMEDIATELY')
-
-client.run('INSERT_DISCORD_SERVER_TOKEN_HERE')
+# No problem
+    elif trigMessage == 'thank you':
+        await client.send_message(message.channel, 'You\'re welcome.')
+client.run(token)
