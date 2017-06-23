@@ -6,7 +6,7 @@ import praw
 import datetime
 import string
 
-token = "MjcyOTkyMjI1NzE2MzM4Njg4.C2fBew.EvdYa4lYWforBVGEebCnBuXETm4"
+token = "KEY"
 
 reddit = praw.Reddit(client_id='gZYW4noix22UQA',
                      client_secret="-HsFfCrXNm59gONekaqD-qugkP4",
@@ -125,6 +125,18 @@ async def on_message(message):
         print(r_user.submissions.new())
         await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '**')
         await client.send_message(message.channel, 'Comment Karma: **' + str(r_user.comment_karma) + '**')
+
+    elif trigMessage.startswith(trigPref + '!u '):
+        user = message.content.split(' ', 1)[1]
+        await client.send_message(message.channel, 'https://www.reddit.com/u/' + user)
+        r_user = reddit.redditor(user)
+        r_u_posts = r_user.submissions.new(limit=5)
+        posts_message = ''
+        for submission in r_u_posts:
+            time = datetime.datetime.fromtimestamp(submission.created)
+            posts_message = posts_message + '\n**(' + str(submission.score) + ')** ' + str(time) + ': *' + submission.title + '*\n' + submission.shortlink
+        await client.send_message(message.channel, 'Link Karma: **' + str(r_user.link_karma) + '** | Comment Karma: **' + str(r_user.comment_karma) + '** | Recent Posts:')
+        await client.send_message(message.channel, posts_message)
 # RandomIntegerSpam
     elif trigMessage.startswith(trigPref + '!numberspam'):
         loop = 1
