@@ -190,11 +190,6 @@ async def on_message(message):
                    "Ha, don't kid yourself"]
         chosenans = random.choice(answers)
         await client.send_message(message.channel, chosenans)
-# RandomIntegerSpam
-    elif trigMessage.startswith(trigPref + '!test'):
-        loop = 1
-        while loop == 1:
-            await client.send_message(message.channel, 'PLAYERUNKNOWNS BATTLEGROUNDS')
 # Error
     elif trigMessage.startswith(trigPref + 'help'):
         await client.send_message(message.channel, 'ERROR CANNOT PROCESS FUNCTION REPORT TO AN ADMINISTRATOR IMMEDIATELY')
