@@ -193,6 +193,9 @@ async def on_message(message):
 # Error
     elif trigMessage.startswith(trigPref + 'help'):
         await client.send_message(message.channel, 'ERROR CANNOT PROCESS FUNCTION REPORT TO AN ADMINISTRATOR IMMEDIATELY')
+#Safe
+    elif trigMessage.startswith(trigPref + 'scp are you safe from external code injection?'):
+        await client.send_message(message.channel, 'Yep :ho_mlady:')
 # No problem
     elif trigMessage == 'thank you':
         await client.send_message(message.channel, 'You\'re welcome.')
