@@ -17,13 +17,11 @@ trigPref = ""
 
 client = discord.Client()
 
-
 @client.event
 async def on_ready():
     print('Logged in')
 
 # SCPBotCode
-
 
 @client.event
 async def on_message(message):
@@ -32,25 +30,27 @@ async def on_message(message):
     SCPCodes = [t for t in trigMessage.split() if t.startswith('scp-') or t.startswith('SCP-') or t.startswith('Scp-')]
     if SCPCodes:
         await client.send_typing(message.channel)
-        msg = SCPCodes[0].split('-', 1)[1]
+        msg = SCPCodes[0].split('-', 2)
+        if len(msg[1]) <= 4 and len(msg[1]) >= 3 and msg[1].isdigit():
+            if(len(msg) > 2):
+                scpurl = 'http://www.scp-wiki.net/scp-' + msg[1] + '-' + msg[2]
+            else:
+                scpurl = 'http://www.scp-wiki.net/scp-' + msg[1]
 
-        if len(msg) <= 4 and len(msg) >= 3 and msg.isdigit():
-            tmp_msg = await client.send_message(message.channel, '**Link:** http://www.scp-wiki.net/scp-' + msg + ' *Checking for existence...*')
-            scp = requests.get('http://www.scp-wiki.net/scp-' + msg)
+            tmp_msg = await client.send_message(message.channel, '**Link:** ' + scpurl + ' *Checking for existence...*')
+            scp = requests.get(scpurl)
             if scp.status_code == 200:
-                # await client.send_typing(message.channel)
-                await client.edit_message(tmp_msg, '**Link:** http://www.scp-wiki.net/scp-' + msg + ' *SCP exists!*')
+                await client.edit_message(tmp_msg, '**Link:** ' + scpurl + ' *SCP exists!*')
 
                 # Someday images may get sent. Not today.
-                # tree = BeautifulSoup(scp.text, "lxml")
-                # img_link = tree.find_all('div', class_="scp-image-block")[0].img.get('src')
-                # await client.send_file(message.channel, img_link, filename='SCP-' + msg + '_img', content=None, tts=False)
+                    # tree = BeautifulSoup(scp.text, "lxml")
+                    # img_link = tree.find_all('div', class_="scp-image-block")[0].img.get('src')
+                    # await client.send_file(message.channel, img_link, filename='SCP-' + msg[1] + '_img', content=None, tts=False)
 
             elif scp.status_code == 404:
-                await client.edit_message(tmp_msg, '~~**Link:** http://www.scp-wiki.net/scp-' + msg + '~~ *SCP does not exist.*')
+                await client.edit_message(tmp_msg, '~~**Link:** ' + scpurl + '~~ *SCP does not exist.*')
             else:
-                await client.edit_message(tmp_msg, '**Link:** http://www.scp-wiki.net/scp-' + msg + ' *Unable to determine if this SCP exists.*')
-
+                await client.edit_message(tmp_msg, '**Link:** ' + scpurl + ' *Unable to determine if this SCP exists.*')
         else:
             await client.send_message(message.channel, 'SCP must be a 3 or 4 digit number. Example: `SCP-1175`')
 # AyyLmaoBotCode
