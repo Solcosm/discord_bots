@@ -199,4 +199,5 @@ async def on_message(message):
 # No problem
     elif trigMessage == 'thank you':
         await client.send_message(message.channel, 'You\'re welcome.')
+    return
 client.run(token)
